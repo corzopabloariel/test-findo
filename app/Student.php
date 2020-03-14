@@ -15,4 +15,9 @@ class Student extends Model
     {
         return $this->belongsTo('App\Person' );
     }
+
+    public function name()
+    {
+        return $this->person->full_name();
+    }
 }

@@ -14,4 +14,9 @@ class Person extends Model
         "last_name",
         "date_birth"
     ];
+
+    public function full_name()
+    {
+        return "{$this->name} {$this->last_name}";
+    }
 }

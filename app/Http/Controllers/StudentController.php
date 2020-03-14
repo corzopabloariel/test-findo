@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use App\Student;
 use Illuminate\Http\Request;
 
@@ -68,10 +69,14 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Request $request, Student $student)
     {
-        $student[ "person" ] = $student->person;
-        return response()->json($student, 200);
+        if($request->isJson()) {
+            $student[ "person" ] = $student->person;
+            return response()->json($student, 200);
+        }
+
+        return response()->json(['error' => 'Sin autorización'], 401, []);
     }
 
     /**
@@ -109,11 +114,15 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy(Request $request, Student $student)
     {
-        $txt = "Student delete {$student->id}";
-        $student->person->delete();
+        if($request->isJson()) {
+            $txt = "Student delete {$student->id}";
+            $student->person->delete();
 
-        return response()->json(['success' => $txt], 200);
+            return response()->json(['message' => $txt], 200);
+        }
+
+        return response()->json(['error' => 'Sin autorización'], 401, []);
     }
 }

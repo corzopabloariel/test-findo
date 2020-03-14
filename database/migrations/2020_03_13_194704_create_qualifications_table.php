@@ -15,15 +15,13 @@ class CreateQualificationsTable extends Migration
     {
         Schema::create('qualifications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger( 'student_id' )->nullable()->default( NULL );
-            $table->unsignedBigInteger( 'teacher_id' )->nullable()->default( NULL );
-            $table->unsignedBigInteger( 'subject_id' )->nullable()->default( NULL );
+            $table->unsignedBigInteger( 'studentsubject_id' )->nullable()->default( NULL );
+            $table->unsignedBigInteger( 'type_id' )->nullable()->default( NULL );
             $table->date('date')->nullable()->default(NULL);
             $table->float('note')->nullable()->default(NULL);
 
-            $table->foreign( 'student_id' )->references( 'id' )->on( 'students' )->onDelete( 'cascade' );
-            $table->foreign( 'teacher_id' )->references( 'id' )->on( 'teachers' )->onDelete( 'cascade' );
-            $table->foreign( 'subject_id' )->references( 'id' )->on( 'subjects' )->onDelete( 'cascade' );
+            $table->foreign( 'studentsubject_id' )->references( 'id' )->on( 'student__subject' )->onDelete( 'cascade' );
+            $table->foreign( 'type_id' )->references( 'id' )->on( 'type_qualifications' )->onDelete( 'set null' );
             $table->timestamps();
         });
     }

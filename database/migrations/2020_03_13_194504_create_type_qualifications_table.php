@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeQualificationTable extends Migration
+class CreateTypeQualificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTypeQualificationTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_qualification', function (Blueprint $table) {
+        Schema::create('type_qualifications', function (Blueprint $table) {
             $table->id();
             $table->string('name',40)->nullable()->default(NULL);
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTypeQualificationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_qualification');
+        Schema::dropIfExists('type_qualifications');
     }
 }

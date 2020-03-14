@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use App\Teacher;
 use Illuminate\Http\Request;
 
@@ -49,12 +50,12 @@ class TeacherController extends Controller
                 try {
                     $person = (new PersonController)->store($request);
                     $person_obj = json_decode($person->content());
-                    $student = Student::create([
+                    $teacher = Teacher::create([
                         "person_id" => $person_obj->id,
                         "docket" => $data["docket"],
                         "date" => $data["date"]
                     ]);
-                    return response()->json($student, 201);
+                    return response()->json($teacher, 201);
                 } catch (\Throwable $th) {
                     return response()->json(['error' => 'Ocurrió un error'], 400, []);
                 }
@@ -70,10 +71,14 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
+    public function show(Request $requset, Teacher $teacher)
     {
-        $teacher[ "person" ] = $teacher->person;
-        return response()->json($teacher, 200);
+        if($request->isJson()) {
+            $teacher[ "person" ] = $teacher->person;
+            return response()->json($teacher, 200);
+        }
+
+        return response()->json(['error' => 'Sin autorización'], 401, []);
     }
 
     /**
@@ -90,7 +95,8 @@ class TeacherController extends Controller
                 'name' => 'required|max:70',
                 'last_name' => 'required|max:90',
                 'date_birth' => 'required|nullable|date',
-                'date' => 'nullable|date'
+                'date' => 'nullable|date',
+                'docket'  => 'required|unique:teachers'
             );
 
             $validator = Validator::make($request->all(), $rules);
@@ -101,12 +107,15 @@ class TeacherController extends Controller
                 $data = $request->json()->all();
                 $person = (new PersonController)->update($request, $teacher->person);
                 $teacher->fill([
-                    'date' => $data["date"]
+                    'date' => $data["date"],
+                    'docket' => $data["docket"]
                 ]);
                 $teacher->save();
                 return response()->json($teacher, 200);
             }
         }
+
+        return response()->json(['error' => 'Sin autorización'], 401, []);
     }
 
     /**
@@ -115,11 +124,15 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy(Request $request, Teacher $teacher)
     {
-        $txt = "Teacher delete {$teacher->id}";
-        $teacher->person->delete();
+        if($request->isJson()) {
+            $txt = "Teacher delete {$teacher->id}";
+            $teacher->person->delete();
 
-        return response()->json(['success' => $txt], 200);
+            return response()->json(['message' => $txt], 200);
+        }
+
+        return response()->json(['error' => 'Sin autorización'], 401, []);
     }
 }
