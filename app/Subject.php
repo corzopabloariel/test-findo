@@ -11,4 +11,9 @@ class Subject extends Model
         "description",
         "teacher_id"
     ];
+
+    public function teacher()
+    {
+        return $this->belongsTo('App\Teacher' );
+    }
 }

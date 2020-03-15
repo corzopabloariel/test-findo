@@ -21,4 +21,9 @@ class Student_Subject extends Model
     {
         return $this->belongsTo('App\Subject' );
     }
+
+    public function qualification()
+    {
+        return $this->hasOneThrough('App\Qualification','App\Student');
+    }
 }

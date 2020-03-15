@@ -32,5 +32,7 @@ Route::get('student/subject', ['uses' => 'StudentSubjectController@index', 'as' 
 Route::post('student/{student}/subject/{subject}', ['uses' => 'StudentSubjectController@store', 'as' => 'student_subject.store']);
 Route::delete('student/subject/{student_subject}', ['uses' => 'StudentSubjectController@destroy', 'as' => 'student_subject.delete']);
 
-Route::apiResource('qualifications', 'QualificationController')->except(['store','update']);
+Route::apiResource('qualifications', 'QualificationController')->except(['store']);
 Route::post('qualifications/student_subject/{student_subject}', ['uses' => 'QualificationController@store', 'as' => 'qualifications.store']);
+Route::get('qualifications/student/{student}', ['uses' => 'QualificationController@student', 'as' => 'qualifications.student']);
+Route::get('history', ['uses' => 'QualificationController@history', 'as' => 'qualifications.history']);

@@ -24,4 +24,19 @@ class Qualification extends Model
     {
         return $this->belongsTo('App\TypeQualification' );
     }
+
+    public function student()
+    {
+        return $this->studentsubject->student->name();
+    }
+
+    public function subject()
+    {
+        return $this->studentsubject->subject->name;
+    }
+
+    public function teacher()
+    {
+        return $this->studentsubject->subject->teacher->name();
+    }
 }
