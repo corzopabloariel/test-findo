@@ -22,6 +22,11 @@ class Person extends Model
         'date_birth' => 'date'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function full_name()
     {
         return "{$this->name} {$this->last_name}";

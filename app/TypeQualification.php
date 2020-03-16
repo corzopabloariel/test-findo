@@ -13,4 +13,9 @@ class TypeQualification extends Model
     protected $casts = [
         'name' => 'string'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

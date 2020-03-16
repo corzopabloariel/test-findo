@@ -17,6 +17,11 @@ class Student_Subject extends Model
         'subject_id' => 'integer'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function student()
     {
         return $this->belongsTo('App\Student' );

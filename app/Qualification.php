@@ -21,6 +21,11 @@ class Qualification extends Model
         'note' => 'float'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function studentsubject()
     {
         return $this->belongsTo('App\Student_Subject' );

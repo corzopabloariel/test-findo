@@ -16,6 +16,11 @@ class Student extends Model
         'person_id' => 'integer'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function person()
     {
         return $this->belongsTo('App\Person' );
