@@ -12,6 +12,12 @@ class Subject extends Model
         "teacher_id"
     ];
 
+    protected $casts = [
+        'name' => 'string',
+        'description' => 'string',
+        'teacher_id' => 'integer'
+    ];
+
     public function teacher()
     {
         return $this->belongsTo('App\Teacher' );

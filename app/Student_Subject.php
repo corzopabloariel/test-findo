@@ -12,6 +12,11 @@ class Student_Subject extends Model
         "subject_id"
     ];
 
+    protected $casts = [
+        'student_id' => 'integer',
+        'subject_id' => 'integer'
+    ];
+
     public function student()
     {
         return $this->belongsTo('App\Student' );

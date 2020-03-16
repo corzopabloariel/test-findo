@@ -15,6 +15,13 @@ class Person extends Model
         "date_birth"
     ];
 
+    protected $casts = [
+        'id_number' => 'integer',
+        'name' => 'string',
+        'last_name' => 'string',
+        'date_birth' => 'date'
+    ];
+
     public function full_name()
     {
         return "{$this->name} {$this->last_name}";

@@ -9,4 +9,8 @@ class TypeQualification extends Model
     protected $fillable = [
         "name"
     ];
+
+    protected $casts = [
+        'name' => 'string'
+    ];
 }

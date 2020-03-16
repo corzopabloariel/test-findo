@@ -15,6 +15,12 @@ class Qualification extends Model
         "note"
     ];
 
+    protected $casts = [
+        'studentsubject_id' => 'integer',
+        'type_id' => 'integer',
+        'note' => 'float'
+    ];
+
     public function studentsubject()
     {
         return $this->belongsTo('App\Student_Subject' );

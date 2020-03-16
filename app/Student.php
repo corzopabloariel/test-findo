@@ -11,6 +11,11 @@ class Student extends Model
         "person_id"
     ];
 
+    protected $casts = [
+        'docket' => 'integer',
+        'person_id' => 'integer'
+    ];
+
     public function person()
     {
         return $this->belongsTo('App\Person' );

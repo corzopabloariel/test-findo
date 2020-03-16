@@ -36,7 +36,6 @@ class QualificationController extends Controller
     {
         if($request->isJson()) {
             $rules = array(
-                'type' => 'required',
                 'note' => 'required',
                 'date' => 'required|date'
             );
@@ -48,13 +47,13 @@ class QualificationController extends Controller
             } else {
                 $data = $request->json()->all();
                 $aux = Qualification::where("studentsubject_id", $student_subject->id)
-                        ->where("type_id",$data["type"])
+                        ->where("type_id",1)
                         ->where("date",$data["date"])
                         ->first();
                 if(!$aux) {
                     $element = Qualification::create([
                         "studentsubject_id" => $student_subject->id,
-                        "type_id" => $data["type"],
+                        "type_id" => 1,
                         "note" => $data["note"],
                         "date" => $data["date"]
                     ]);

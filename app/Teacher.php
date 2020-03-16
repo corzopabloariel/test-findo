@@ -12,6 +12,12 @@ class Teacher extends Model
         "person_id"
     ];
 
+    protected $casts = [
+        'docket' => 'integer',
+        'date' => 'date',
+        'person_id' => 'integer'
+    ];
+
     public function person()
     {
         return $this->belongsTo('App\Person' );

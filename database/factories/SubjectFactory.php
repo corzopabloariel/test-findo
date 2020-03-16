@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Calificacion;
+use App\Subject;
 use Faker\Generator as Faker;
 
-$factory->define(Calificacion::class, function (Faker $faker) {
+$factory->define(Subject::class, function (Faker $faker) {
     return [
         //
     ];
