@@ -27,6 +27,7 @@ DELETE /api/students/1
 ## Entidades
 #### Student
 **Métodos:** Create (POST), Read (GET), Update (PUT), Delete (DELETE)
+
 | ATTR | TYPE |
 | ------ | ------ |
 | id_number | INTEGER |
@@ -34,8 +35,10 @@ DELETE /api/students/1
 | last_name | STRING |
 | date_birth | DATE |
 | docket | INTEGER |
+
 #### Teacher
 **Métodos:** Create (POST), Read (GET), Update (PUT), Delete (DELETE)
+
 | ATTR | TYPE |
 | ------ | ------ |
 | id_number | INTEGER |
@@ -44,26 +47,34 @@ DELETE /api/students/1
 | date_birth | DATE |
 | docket | INTEGER |
 | date | DATE |
+
 **Subject**
 **Métodos:** Create (POST), Read (GET), Update (PUT), Delete (DELETE)
+
 | ATTR | TYPE |
 | ------ | ------ |
 | name | STRING |
 | description | STRING |
 | teacher_id | INTEGER |
+
 **Student_Subject**
 **Métodos:** Create (POST), Read all (GET), Delete (DELETE)
+
 | ATTR | TYPE |
 | ------ | ------ |
 | student_id | INTEGER |
 | subject_id | INTEGER |
+
 **TypeQualification**
 **Métodos:** Create (POST), Read (GET), Update (PUT), Delete (DELETE)
+
 | ATTR | TYPE |
 | ------ | ------ |
 | name | STRING |
+
 **Qualification**
 **Métodos:** Create (POST), Read (GET), Update (PUT), Delete (DELETE)
+
 | ATTR | TYPE |
 | ------ | ------ |
 | studentsubject_id | INTEGER |
